@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const BASE_API_URL = process.env.BASE_API_PUBLIC_URL;
+const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 
 if (!BASE_API_URL) {
-  throw new Error('BASE_API_PUBLIC_URL is not defined');
+  throw new Error('NEXT_PUBLIC_BASE_API_URL is not defined');
 }
 
 const axiosInstance = () => {
@@ -27,7 +27,7 @@ const httpGet = async (endpoint: string, options?: ApiRequestOptions) => {
       params: options?.params,
       headers: options?.headers,
     });
-    return response;
+    return response.data;
   } catch (error) {
     console.error(`Get request to ${endpoint} failed:`, error);
     throw error;
@@ -44,7 +44,7 @@ const httpPost = async (
       params: options?.params,
       headers: options?.headers,
     });
-    return response;
+    return response.data;
   } catch (error) {
     console.error(`Post request to ${endpoint} failed:`, error);
     throw error;
@@ -61,7 +61,7 @@ const httpPut = async (
       params: options?.params,
       headers: options?.headers,
     });
-    return response;
+    return response.data;
   } catch (error) {
     console.error(`Put request to ${endpoint} failed:`, error);
     throw error;
@@ -78,7 +78,7 @@ const httpPatch = async (
       params: options?.params,
       headers: options?.headers,
     });
-    return response;
+    return response.data;
   } catch (error) {
     console.error(`Patch request to ${endpoint} failed:`, error);
     throw error;
@@ -91,7 +91,7 @@ const httpDelete = async (endpoint: string, options?: ApiRequestOptions) => {
       params: options?.params,
       headers: options?.headers,
     });
-    return response;
+    return response.data;
   } catch (error) {
     console.error(`Delete request to ${endpoint} failed:`, error);
     throw error;
